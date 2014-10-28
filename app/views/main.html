@@ -1,23 +1,32 @@
-<div class="jumbotron">
-  <h1>'Allo, 'Allo!</h1>
-  <p class="lead">
-    <img src="images/yeoman.png" alt="I'm Yeoman"><br>
-    Always a pleasure scaffolding your apps.
-  </p>
-  <p><a class="btn btn-lg btn-success" ng-href="#">Splendid!<span class="glyphicon glyphicon-ok"></span></a></p>
-</div>
-
-<div class="row marketing">
-  <h4>HTML5 Boilerplate</h4>
-  <p>
-    HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.
-  </p>
-
-  <h4>Angular</h4>
-  <p>
-    AngularJS is a toolset for building the framework most suited to your application development.
-  </p>
-
-  <h4>Karma</h4>
-  <p>Spectacular Test Runner for JavaScript.</p>
+<div class="container">
+    <form name="userForm" role="form" ng-submit="addTransaction()">
+        <div class="input-group col-md-4">
+            <input type="text" ng-model="transaction.title" placeholder="On what do you spend your money?" class="form-control text-right textInput">
+        </div>
+        <div class="input-group col-md-4">
+            <span class="input-group-addon">Rs.</span>
+            <input type="text" only-digits ng-model="transaction.amount" placeholder="How much you spent?" class="form-control text-right numberInput" required>
+            <span class="input-group-addon">.00</span>
+            <span class="input-group-btn">
+                <input type="submit" class="btn btn-primary" value="+" ng-disabled="userForm.$invalid">
+            </span>
+        </div>
+    </form>
+    <p></p>
+    <div class="form-group">
+        <div class="panel panel-success">
+            <div class="panel-body">
+                <div class="row" ng-repeat="transaction in transactions track by $index">
+                    <label class="control-label col-sm-3 col-sm-offset-1" for="jbe"><i class="glyphicon glyphicon-tasks"></i>&nbsp;&nbsp;&nbsp;{{transaction.title}}</label>
+                    <div class="input-group input-group-sm col-sm-offset-1 col-sm-2">
+                        <input type="text" ng-model="transaction.amount" class="form-control text-right">
+                        <span class="input-group-addon">.00</span>
+                        <span class="input-group-btn">
+                            <button class="btn btn-sm btn-danger" ng-click="removeTransaction($index)" aria-label="Remove">X</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
